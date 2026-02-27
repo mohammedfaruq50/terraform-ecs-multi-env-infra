@@ -217,6 +217,7 @@ staging
 prod
 
 **📈 Auto Scaling Configuration**
+
 1.Scaling Metric: CPU Utilization
 
 2.Target Value: ~60%
@@ -228,6 +229,7 @@ prod
 5.Monitoring: CloudWatch alarms trigger scaling policies automatically
 
 **🔐 Security Design**
+
 1.ECS tasks deployed in private subnets
 
 2.Only Application Load Balancer (ALB) exposed to the internet
