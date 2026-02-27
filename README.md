@@ -2,7 +2,9 @@
 
 📖 Overview
 
-This repository contains a production-grade DevOps infrastructure project that deploys a containerized application (FastAPI backend + Next.js frontend) on AWS using Terraform (Infrastructure as Code).
+This project demonstrates a practical DevOps implementation of deploying a containerized web application (FastAPI backend and Next.js frontend) on AWS using Terraform as Infrastructure as Code (IaC).
+The infrastructure is designed with a modular and multi-environment structure (dev, staging, production) and includes services such as Amazon ECS for container orchestration, Amazon ECR for image storage, load balancing, and networking configuration.
+The goal of this project is to showcase hands-on experience in cloud infrastructure provisioning, containerization, environment management, and infrastructure automation following DevOps best practices.
 
 The architecture is designed with:
 
