@@ -1,20 +1,55 @@
-# DevOps Assignment
+# terraform-ecs-multi-env-infra
 
-This project consists of a FastAPI backend and a Next.js frontend that communicates with the backend.
+📖 Overview
+
+This repository contains a production-grade DevOps infrastructure project that deploys a containerized application (FastAPI backend + Next.js frontend) on AWS using Terraform (Infrastructure as Code).
+
+The architecture is designed with:
+
+-Multi-environment support (Development, Staging, Production)
+
+-Amazon ECS (Fargate) for container orchestration
+
+-Application Load Balancer (ALB)
+
+-Auto Scaling with CloudWatch monitoring
+
+-Amazon ECR for container image storage
+
+-Modular Terraform architecture
+
+-High availability and secure networking
+
+-This project demonstrates real-world cloud infrastructure implementation aligned with DevOps best practices.
 
 ## Project Structure
 
 ```
-.
-├── backend/               # FastAPI backend
+terraform-ecs-multi-env-infra/
+│
+├── backend/                    # FastAPI application
 │   ├── app/
-│   │   └── main.py       # Main FastAPI application
-│   └── requirements.txt    # Python dependencies
-└── frontend/              # Next.js frontend
-    ├── pages/
-    │   └── index.js     # Main page
-    ├── public/            # Static files
-    └── package.json       # Node.js dependencies
+│   └── requirements.txt
+│
+├── frontend/                   # Next.js application
+│   ├── pages/
+│   └── package.json
+│
+├── terraform/
+│   ├── modules/
+│   │   ├── vpc/
+│   │   ├── alb/
+│   │   ├── ecs-cluster/
+│   │   ├── ecs-service/
+│   │   ├── ecr/
+│   │   └── autoscaling/
+│   │
+│   └── environments/
+│       ├── dev/
+│       ├── staging/
+│       └── prod/
+│
+└── README.md
 ```
 
 ## Prerequisites
@@ -123,3 +158,55 @@ NEXT_PUBLIC_API_URL=https://your-new-backend-url.com
 
 - `GET /api/message`: Get the integration message
   - Returns: `{"message": "You've successfully integrated the backend!"}`
+
+
+**##Docker & ECR Workflow**
+
+The frontend and backend are containerized using Docker.
+
+**Build Images**
+docker build -t dev/backend backend/
+docker build -t dev/frontend frontend/
+**Authenticate with Amazon ECR**
+aws ecr get-login-password --region us-west-2 | \
+docker login --username AWS --password-stdin 202059357459.dkr.ecr.us-west-2.amazonaws.com
+**Tag Image for Environment**
+docker tag dev/backend:latest 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
+**Push Image to ECR**
+docker push 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
+**ECS services pull container images directly from ECR during deployment.**
+
+
+**Infrastructure Deployment**
+1️⃣ Navigate to Environment
+cd terraform/environments/dev
+2️⃣ Initialize Terraform
+terraform init
+3️⃣ Plan Infrastructure
+terraform plan
+4️⃣ Apply Infrastructure
+terraform apply
+
+**Repeat the process for:**
+
+staging
+prod
+
+**Auto Scaling Configuration**
+
+Scaling Metric: CPU Utilization
+Target Value: ~60%
+Minimum Tasks: Configurable per environment
+Maximum Tasks: Configurable per environment
+CloudWatch alarms trigger scaling policies automatically
+
+**Security Design**
+ECS tasks deployed in private subnets
+Only ALB exposed to the internet
+Security groups restrict internal communication
+No public EC2 instances
+Serverless compute using AWS Fargate
+Environment-level isolation
+
+
+
