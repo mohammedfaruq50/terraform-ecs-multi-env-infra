@@ -162,53 +162,38 @@ NEXT_PUBLIC_API_URL=https://your-new-backend-url.com
   - Returns: `{"message": "You've successfully integrated the backend!"}`
 
 
-**##Docker & ECR Workflow**
+## Docker & ECR Workflow
 
 The frontend and backend are containerized using Docker.
 
-**Build Images**
+### Build Images
+
+```bash
 docker build -t dev/backend backend/
 docker build -t dev/frontend frontend/
-**Authenticate with Amazon ECR**
+```
+
+### Authenticate with Amazon ECR
+
+```bash
 aws ecr get-login-password --region us-west-2 | \
 docker login --username AWS --password-stdin 202059357459.dkr.ecr.us-west-2.amazonaws.com
-**Tag Image for Environment**
+```
+
+### Tag Image
+
+```bash
 docker tag dev/backend:latest 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
-**Push Image to ECR**
+```
+
+### Push Image
+
+```bash
 docker push 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
-**ECS services pull container images directly from ECR during deployment.**
+```
 
+ECS services pull container images directly from ECR.
 
-**Infrastructure Deployment**
-1️⃣ Navigate to Environment
-cd terraform/environments/dev
-2️⃣ Initialize Terraform
-terraform init
-3️⃣ Plan Infrastructure
-terraform plan
-4️⃣ Apply Infrastructure
-terraform apply
-
-**Repeat the process for:**
-
-staging
-prod
-
-**Auto Scaling Configuration**
-
-Scaling Metric: CPU Utilization
-Target Value: ~60%
-Minimum Tasks: Configurable per environment
-Maximum Tasks: Configurable per environment
-CloudWatch alarms trigger scaling policies automatically
-
-**Security Design**
-ECS tasks deployed in private subnets
-Only ALB exposed to the internet
-Security groups restrict internal communication
-No public EC2 instances
-Serverless compute using AWS Fargate
-Environment-level isolation
 
 
 
