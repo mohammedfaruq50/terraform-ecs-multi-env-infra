@@ -191,45 +191,43 @@ docker tag dev/backend:latest (accountID).dkr.ecr.us-west-2.amazonaws.com/prod/b
 ```bash
 docker push (accountID).dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
 ```
-Repeat the same process for the staging and prod.
+### Repeat the same process for the staging and prod.
 ECS services pull container images directly from ECR.
 
 
 Infrastructure Deployment:
 ### 1.Navigate to Environment
-```bash cd terraform/environments/dev```
+```bash
+cd terraform/environments/dev
+```
 ### 2.Initialize Terraform
-``` bash terraform init ```
+``` bash
+terraform init
+ ```
 ### 3.Plan Infrastructure
-``` bash terraform plan ```
+``` bash 
+terraform plan
+ ```
 ### 4.Apply Infrastructure
-``` bash terraform apply ```
+``` bash
+terraform apply
+ ```
 ### Repeat the same process for:
 staging
 prod
 
 **📈 Auto Scaling Configuration**
-
 1.Scaling Metric: CPU Utilization
-
 2.Target Value: ~60%
-
 3.Minimum Tasks: Configurable per environment
-
 4.Maximum Tasks: Configurable per environment
-
 5.Monitoring: CloudWatch alarms trigger scaling policies automatically
 
 **🔐 Security Design**
-
 1.ECS tasks deployed in private subnets
-
 2.Only Application Load Balancer (ALB) exposed to the internet
-
 3.Security groups restrict internal communication
-
 4.No public EC2 instances
-
 5.Serverless compute using AWS Fargate
 
 6.Environment-level isolation
