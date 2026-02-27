@@ -195,5 +195,35 @@ Repeat the same process for the staging and prod.
 ECS services pull container images directly from ECR.
 
 
+**Infrastructure Deployment**
+1️⃣ Navigate to Environment cd terraform/environments/dev 
+2️⃣ Initialize Terraform terraform init 
+3️⃣ Plan Infrastructure terraform plan 
+4️⃣ Apply Infrastructure terraform apply Repeat the process for: staging prod 
 
+**📈 Auto Scaling Configuration**
+
+1.Scaling Metric: CPU Utilization
+
+2.Target Value: ~60%
+
+3.Minimum Tasks: Configurable per environment
+
+4.Maximum Tasks: Configurable per environment
+
+5.Monitoring: CloudWatch alarms trigger scaling policies automatically
+
+**🔐 Security Design**
+
+1.ECS tasks deployed in private subnets
+
+2.Only Application Load Balancer (ALB) exposed to the internet
+
+3.Security groups restrict internal communication
+
+4.No public EC2 instances
+
+5.Serverless compute using AWS Fargate
+
+6.Environment-level isolation
 
