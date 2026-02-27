@@ -195,11 +195,18 @@ Repeat the same process for the staging and prod.
 ECS services pull container images directly from ECR.
 
 
-**Infrastructure Deployment**
-1️⃣ Navigate to Environment cd terraform/environments/dev 
-2️⃣ Initialize Terraform terraform init 
-3️⃣ Plan Infrastructure terraform plan 
-4️⃣ Apply Infrastructure terraform apply Repeat the process for: staging prod 
+Infrastructure Deployment:
+1.Navigate to Environment
+**cd terraform/environments/dev**
+2.Initialize Terraform
+**terraform init**
+3.Plan Infrastructure
+**terraform plan**
+4.Apply Infrastructure
+**terraform apply**
+Repeat the same process for:
+staging
+prod
 
 **📈 Auto Scaling Configuration**
 
