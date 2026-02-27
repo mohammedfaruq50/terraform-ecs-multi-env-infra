@@ -1,0 +1,107 @@
+#################################
+# Terraform
+#################################
+
+# Local .terraform directories
+**/.terraform/*
+.terraform/*
+
+# Terraform state files
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Sensitive variable files
+*.tfvars
+*.tfvars.json
+
+# Terraform plan files
+*.tfplan
+plan.out
+
+# Override files
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Lock file (OPTIONAL - keep if team project)
+# .terraform.lock.hcl
+
+
+#################################
+# Backend (Python / FastAPI)
+#################################
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+.env/
+.venv/
+
+# Environment variables
+.env
+
+# Logs
+*.log
+
+# SQLite (if used)
+*.sqlite3
+
+
+#################################
+# Frontend (React / Node)
+#################################
+
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env.local
+.env.development
+.env.production
+
+
+#################################
+# Docker
+#################################
+
+# Docker override files
+docker-compose.override.yml
+
+# Local Docker volumes
+*.docker
+
+
+#################################
+# OS / Editor
+#################################
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# VSCode
+.vscode/
+
+# IntelliJ
+.idea/
+
+#################################
+# Misc
+#################################
+
+*.swp
+*.bak
+*.tmp
