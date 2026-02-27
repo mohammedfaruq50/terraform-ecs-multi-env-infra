@@ -198,13 +198,13 @@ ECS services pull container images directly from ECR.
 Infrastructure Deployment:
 ### 1.Navigate to Environment
 ```bash cd terraform/environments/dev```
-2.Initialize Terraform
+### 2.Initialize Terraform
 ``` bash terraform init ```
-3.Plan Infrastructure
+### 3.Plan Infrastructure
 ``` bash terraform plan ```
-4.Apply Infrastructure
+### 4.Apply Infrastructure
 ``` bash terraform apply ```
-Repeat the same process for:
+### Repeat the same process for:
 staging
 prod
 
