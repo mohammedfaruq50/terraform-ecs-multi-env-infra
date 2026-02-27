@@ -177,21 +177,21 @@ docker build -t dev/frontend frontend/
 
 ```bash
 aws ecr get-login-password --region us-west-2 | \
-docker login --username AWS --password-stdin 202059357459.dkr.ecr.us-west-2.amazonaws.com
+docker login --username AWS --password-stdin (accountID).dkr.ecr.us-west-2.amazonaws.com
 ```
 
 ### Tag Image
 
 ```bash
-docker tag dev/backend:latest 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
+docker tag dev/backend:latest (accountID).dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
 ```
 
 ### Push Image
 
 ```bash
-docker push 202059357459.dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
+docker push (accountID).dkr.ecr.us-west-2.amazonaws.com/prod/backend:latest
 ```
-
+Repeat the same process for the staging and prod.
 ECS services pull container images directly from ECR.
 
 
